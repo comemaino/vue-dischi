@@ -1,9 +1,9 @@
 <template>
-  <div class="container p-3">
+  <div class="container d-flex p-3">
     <div class="container" v-if="loading">
       <AppLoading />
     </div>
-    <div v-else>
+    <div calss="wrapper d-flex" v-else>
       <div class="row row-cols-5 justify-content-between g-3">
         <AppAlbumCard
           v-for="(item, index) in albums"
@@ -45,4 +45,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  align-items: center;
+  height: 100%;
+}
+</style>

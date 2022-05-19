@@ -26,6 +26,7 @@ export default {
 @import "./style/common.scss";
 
 main {
+  height: calc(100vh - 60px);
   background-color: #222;
 }
 </style>
