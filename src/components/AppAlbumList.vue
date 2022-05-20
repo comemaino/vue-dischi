@@ -4,9 +4,12 @@
       <AppLoading />
     </div>
     <div calss="wrapper d-flex" v-else>
+      <div class="container">
+        <AppSearch @selection="saveSelection($event)" />
+      </div>
       <div class="row row-cols-5 justify-content-between g-3">
         <AppAlbumCard
-          v-for="(item, index) in albums"
+          v-for="(item, index) in albumFilter"
           :key="index"
           :album="item"
         />
@@ -17,6 +20,7 @@
 
 <script>
 import AppAlbumCard from "./AppAlbumCard.vue";
+import AppSearch from "./AppSearch.vue";
 import AppLoading from "./AppLoading.vue";
 import axios from "axios";
 
@@ -25,14 +29,17 @@ export default {
   components: {
     AppAlbumCard,
     AppLoading,
+    AppSearch,
   },
 
   data() {
     return {
       albums: [],
       loading: true,
+      selectedOption: "",
     };
   },
+
   created() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
@@ -41,6 +48,21 @@ export default {
         this.loading = false;
         console.log(this.albums);
       });
+  },
+
+  computed: {
+    albumFilter() {
+      const filteredAlbums = this.albums.filter((item) => {
+        return item.name.includes(this.selectedOption);
+      });
+      return filteredAlbums;
+    },
+  },
+
+  methods: {
+    saveSelection(selection) {
+      this.selectedOption = selection;
+    },
   },
 };
 </script>
