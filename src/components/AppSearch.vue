@@ -6,10 +6,10 @@
     v-model="selectedOption"
     @change="$emit('selection', selectedOption)"
   >
-    <option value="">Rock</option>
-    <option value="">Pop</option>
-    <option value="">Jazz</option>
-    <option value="">Metal</option>
+    <option value="Rock">Rock</option>
+    <option value="Pop">Pop</option>
+    <option value="Jazz">Jazz</option>
+    <option value="Metal">Metal</option>
   </select>
 </template>
 

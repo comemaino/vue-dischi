@@ -53,7 +53,7 @@ export default {
   computed: {
     albumFilter() {
       const filteredAlbums = this.albums.filter((item) => {
-        return item.name.includes(this.selectedOption);
+        return item.genre.includes(this.selectedOption);
       });
       return filteredAlbums;
     },
@@ -62,6 +62,8 @@ export default {
   methods: {
     saveSelection(selection) {
       this.selectedOption = selection;
+
+      console.log(selection);
     },
   },
 };
