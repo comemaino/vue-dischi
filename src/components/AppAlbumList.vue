@@ -1,17 +1,12 @@
 <template>
   <div class="container d-flex p-3">
-    <div class="container" v-if="loading">
-      <AppLoading />
-    </div>
-    <div calss="wrapper d-flex" v-else>
-      <div class="container">
-        <AppSearch @selection="saveSelection($event)" />
-      </div>
+    <div calss="wrapper d-flex">
+      <div class="container"></div>
       <div class="row row-cols-5 justify-content-between g-3">
         <AppAlbumCard
-          v-for="(item, index) in albumFilter"
+          v-for="(discItem, index) in discList"
           :key="index"
-          :album="item"
+          :disc="discItem"
         />
       </div>
     </div>
@@ -20,52 +15,32 @@
 
 <script>
 import AppAlbumCard from "./AppAlbumCard.vue";
-import AppSearch from "./AppSearch.vue";
-import AppLoading from "./AppLoading.vue";
-import axios from "axios";
 
 export default {
   name: "AppAlbumList",
   components: {
     AppAlbumCard,
-    AppLoading,
-    AppSearch,
   },
 
-  data() {
-    return {
-      albums: [],
-      loading: true,
-      selectedOption: "",
-    };
+  props: {
+    discList: Array,
   },
 
-  created() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((resp) => {
-        this.albums = resp.data.response;
-        this.loading = false;
-        console.log(this.albums);
-      });
-  },
+  // data() {
+  //   return {
+  //     albums: [],
+  //     selectedOption: "",
+  //   };
+  // },
 
-  computed: {
-    albumFilter() {
-      const filteredAlbums = this.albums.filter((item) => {
-        return item.genre.includes(this.selectedOption);
-      });
-      return filteredAlbums;
-    },
-  },
-
-  methods: {
-    saveSelection(selection) {
-      this.selectedOption = selection;
-
-      console.log(selection);
-    },
-  },
+  // computed: {
+  //   albumFilter() {
+  //     const filteredAlbums = this.albums.filter((item) => {
+  //       return item.genre.includes(this.selectedOption);
+  //     });
+  //     return filteredAlbums;
+  //   },
+  // },
 };
 </script>
 

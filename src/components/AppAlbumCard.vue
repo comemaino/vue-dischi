@@ -1,9 +1,9 @@
 <template>
   <div class="col album-card text-center p-3">
-    <img :src="album.poster" alt="" />
-    <h5 class="album-title mt-3">{{ album.title }}</h5>
-    <p class="artist mb-0">{{ album.author }}</p>
-    <p class="year">{{ album.year }}</p>
+    <img :src="disc.poster" alt="" />
+    <h5 class="album-title mt-3">{{ disc.title }}</h5>
+    <p class="artist mb-0">{{ disc.author }}</p>
+    <p class="year">{{ disc.year }}</p>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 export default {
   name: "AppAlbumCard",
   props: {
-    album: Object,
+    disc: Object,
   },
 };
 </script>
